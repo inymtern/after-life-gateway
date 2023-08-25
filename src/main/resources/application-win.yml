@@ -1,0 +1,37 @@
+spring:
+  config:
+    import: config.yml
+  main:
+    web-application-type: reactive
+  application:
+    name: gateway
+  cloud:
+    loadbalancer:
+      enabled: true
+    nacos:
+      discovery:
+        server-addr: ${nacos.address}
+      config:
+        import-check:
+          enabled: false
+        server-addr: ${nacos.address}
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: ai_route
+          uri: lb://aiApp
+          predicates:
+            - Path=/chatai/**
+        - id: blog_route
+          uri: lb://blogApp
+          predicates:
+            - Path=/blog/**
+        - id: obs_route
+          uri: lb://obsApp
+          predicates:
+            - Path=/obs/**
+      enabled: true
+server:
+  port: 8999
