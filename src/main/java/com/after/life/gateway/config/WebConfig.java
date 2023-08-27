@@ -23,6 +23,8 @@ public class WebConfig {
         config.addAllowedOrigin("http://127.0.0.1:8801");
         config.addAllowedOrigin("http://127.0.0.1:5173");
         config.addAllowedOrigin("http://127.0.0.1:5174");
+        config.addAllowedOrigin("https://inymtern.cc");
+        config.addAllowedOrigin("http://inymtern.cc:5173");
         config.addAllowedHeader("*");
         config.setMaxAge(18000L);
         config.setAllowCredentials(false);
